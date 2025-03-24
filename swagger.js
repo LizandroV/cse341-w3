@@ -12,7 +12,7 @@ const doc = {
 	},
 	servers: [
 		{
-			url: 'https://adoptionapi.example.com',
+			url: 'https://cse341-w3-adoptionapi.onrender.com',
 			description: 'Production Server',
 		},
 		{
