@@ -148,8 +148,8 @@
           }
         ],
         "responses": {
-          "206": {
-            "description": "Partial Content"
+          "204": {
+            "description": "No Content"
           },
           "500": {
             "description": "Internal Server Error"

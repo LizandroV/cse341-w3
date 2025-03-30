@@ -114,7 +114,7 @@ const doc = {
 				summary: 'Delete a pet by ID',
 				parameters: [{ $ref: '#/components/parameters/petId' }],
 				responses: {
-					206: { description: 'Pet deleted successfully' },
+					204: { description: 'Pet deleted successfully' },
 					500: { description: 'Server error' },
 				},
 			},
