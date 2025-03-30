@@ -23,7 +23,7 @@ class adoptionController {
 			const data = await modelAdoption.create(req.body);
 			res.status(201).json(data);
 		} catch (error) {
-			res.status(500).json({ message: `Error creating pet, Error: ${error}` });
+			res.status(500).json({ message: `${error}` });
 		}
 	}
 
@@ -52,7 +52,7 @@ class adoptionController {
 			const data = await modelAdoption.update(id, req.body);
 			res.status(200).json(data);
 		} catch (error) {
-			res.status(500).json({ message: `Error updating pet, Error: ${error}` });
+			res.status(500).json({ message: `${error}` });
 		}
 	}
 
@@ -69,9 +69,9 @@ class adoptionController {
 		try {
 			const { id } = req.params;
 			const data = await modelAdoption.delete(id);
-			res.status(206).json(data);
+			res.status(204).json(data);
 		} catch (error) {
-			res.status(500).json({ message: `Error deleting pet, Error: ${error}` });
+			res.status(500).json({ message: `${error}` });
 		}
 	}
 
@@ -83,7 +83,7 @@ class adoptionController {
 			const data = await modelAdoption.getAll();
 			res.status(200).json(data);
 		} catch (error) {
-			res.status(500).json({ message: `Error fetching pets, Error: ${error}` });
+			res.status(500).json({ message: `${error}` });
 		}
 	}
 
@@ -102,7 +102,7 @@ class adoptionController {
 			const data = await modelAdoption.getOne(id);
 			res.status(200).json(data);
 		} catch (error) {
-			res.status(500).json({ message: `Error fetching pet, Error: ${error}` });
+			res.status(500).json({ message: `${error}` });
 		}
 	}
 }

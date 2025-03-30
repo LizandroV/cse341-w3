@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import dbClient from './config/dbClient.js';
 import express from 'express';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
@@ -28,3 +29,8 @@ try {
 } catch (error) {
 	console.error(`Error occurred: ${error}`);
 }
+
+process.on('SIGINT', async () => {
+	dbClient.closeConnection();
+	process.exit(0);
+});
