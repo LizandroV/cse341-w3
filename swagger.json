@@ -19,6 +19,10 @@
     {
       "name": "Adoption",
       "description": "Operations related to pet adoptions"
+    },
+    {
+      "name": "Owner",
+      "description": "Operations related to pet owners"
     }
   ],
   "paths": {
@@ -156,9 +160,131 @@
           }
         }
       }
+    },
+    "/owner/register": {
+      "post": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "Register a new owner",
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Owner registered successfully"
+          },
+          "400": {
+            "description": "The user already exists"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Owner"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/owner/login": {
+      "post": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "Login owner",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "example": {
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid credentials"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "johndoe@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "SecurePass123"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/owner/profile": {
+      "get": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "Get owner profile",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owner profile retrieved successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
       "Pet": {
         "type": "object",
@@ -282,6 +408,83 @@
               "name",
               "type",
               "age"
+            ],
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Owner": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "John Doe"
+                  }
+                }
+              },
+              "email": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "johndoe@example.com"
+                  }
+                }
+              },
+              "password": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "SecurePass123"
+                  }
+                }
+              },
+              "phone": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "1234567890"
+                  }
+                }
+              }
+            }
+          },
+          "required": {
+            "type": "array",
+            "example": [
+              "name",
+              "email",
+              "password"
             ],
             "items": {
               "type": "string"

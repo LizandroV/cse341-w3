@@ -1,0 +1,38 @@
+[
+	{
+		"name": "Juan Pérez",
+		"email": "juan.perez@gmail.com",
+		"password": "SecurePass123",
+		"phone": "+123456789",
+		"pets": []
+	},
+	{
+		"name": "María González",
+		"email": "maria.gonzalez@gmail.com",
+		"password": "MariaPass456",
+		"phone": "+987654321",
+		"pets": []
+	},
+	{
+		"name": "Carlos Rodríguez",
+		"email": "carlos.rodriguez@gmail.com",
+		"password": "CarlosSecure789",
+		"phone": "+1122334455",
+		"pets": []
+	},
+	{
+		"name": "Ana Torres",
+		"email": "ana.torres@gmail.com",
+		"password": "AnaPass321",
+		"phone": "+5566778899",
+
+		"pets": []
+	},
+	{
+		"name": "Luis Fernández",
+		"email": "luis.fernandez@gmail.com",
+		"password": "LuisPass987",
+		"phone": "+3344556677",
+		"pets": []
+	}
+]

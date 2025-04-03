@@ -25,19 +25,8 @@ const doc = {
 			name: 'Adoption',
 			description: 'Operations related to pet adoptions',
 		},
-		{
-			name: 'Owner',
-			description: 'Operations related to pet owners',
-		},
 	],
 	components: {
-		securitySchemes: {
-			BearerAuth: {
-				type: 'http',
-				scheme: 'bearer',
-				bearerFormat: 'JWT',
-			},
-		},
 		schemas: {
 			Pet: {
 				type: 'object',
@@ -55,16 +44,6 @@ const doc = {
 					},
 				},
 				required: ['name', 'type', 'age'],
-			},
-			Owner: {
-				type: 'object',
-				properties: {
-					name: { type: 'string', example: 'John Doe' },
-					email: { type: 'string', example: 'johndoe@example.com' },
-					password: { type: 'string', example: 'SecurePass123' },
-					phone: { type: 'string', example: '1234567890' },
-				},
-				required: ['name', 'email', 'password'],
 			},
 		},
 		parameters: {
@@ -118,7 +97,6 @@ const doc = {
 				},
 				responses: {
 					200: { description: 'Pet updated successfully' },
-					401: { description: 'Unauthorized' },
 					500: { description: 'Server error' },
 				},
 			},
@@ -137,73 +115,7 @@ const doc = {
 				parameters: [{ $ref: '#/components/parameters/petId' }],
 				responses: {
 					204: { description: 'Pet deleted successfully' },
-					401: { description: 'Unauthorized' },
 					500: { description: 'Server error' },
-				},
-			},
-		},
-		'/owner/register': {
-			post: {
-				tags: ['Owner'],
-				summary: 'Register a new owner',
-				requestBody: {
-					required: true,
-					content: {
-						'application/json': {
-							schema: {
-								$ref: '#/components/schemas/Owner',
-							},
-						},
-					},
-				},
-				responses: {
-					201: { description: 'Owner registered successfully' },
-					400: { description: 'Invalid data' },
-				},
-			},
-		},
-		'/owner/login': {
-			post: {
-				tags: ['Owner'],
-				summary: 'Login owner',
-				requestBody: {
-					required: true,
-					content: {
-						'application/json': {
-							schema: {
-								type: 'object',
-								properties: {
-									email: { type: 'string', example: 'johndoe@example.com' },
-									password: { type: 'string', example: 'SecurePass123' },
-								},
-								required: ['email', 'password'],
-							},
-						},
-					},
-				},
-				responses: {
-					200: {
-						description: 'Login successful',
-						content: {
-							'application/json': {
-								example: {
-									token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
-								},
-							},
-						},
-					},
-					401: { description: 'Invalid credentials' },
-				},
-			},
-		},
-		'/owner/profile': {
-			get: {
-				tags: ['Owner'],
-				summary: 'Get owner profile',
-				security: [{ BearerAuth: [] }], // Protegido con Bearer Token
-				responses: {
-					200: { description: 'Success' },
-					401: { description: 'Unauthorized' },
 				},
 			},
 		},

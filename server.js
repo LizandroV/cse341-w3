@@ -6,6 +6,7 @@ import swaggerUi from 'swagger-ui-express';
 import { readFile } from 'fs/promises';
 import cors from 'cors';
 import routesAdoption from './routes/routesAdoption.js';
+import routesOwner from './routes/routesOwner.js';
 
 const swaggerDocument = JSON.parse(
 	await readFile(new URL('./swagger.json', import.meta.url)),
@@ -19,6 +20,7 @@ app.use(cors());
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/adoption', routesAdoption);
+app.use('/owner', routesOwner);
 
 try {
 	const PORT = process.env.PORT;
